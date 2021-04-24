@@ -31,8 +31,13 @@
                 {{ session('deleted') }}
             </div>          
             @endif
+            @if(session('updated'))
+            <div class="col-md-10 offset-md-1 alert alert-info" role="alert">
+                {{ session('updated') }}
+            </div>          
+            @endif
             @if(session('update'))
-            <div class="col-md-10 offset-md-1 alert alert-success" role="alert">
+            <div class="col-md-10 offset-md-1 alert alert-danger" role="alert">
                 {{ session('update') }}
             </div>    
              @endif
@@ -59,7 +64,9 @@
                                 <!-- On va ajouter deux icons ici pour la modification et la suppression -->
                                 <td>
                                     <div class="d-flex justify-content-between" style="flex-direction: column">
-                                        <i class="fas fa-user-edit"></i>
+                                        <a href="{{ url('users/'.$value->id.'/edit') }}">
+                                            <i class="fas fa-user-edit"></i>
+                                        </a>
                                         <form action="{{ url('users/'.$value->id) }}" method="post">
                                             @csrf
                                             @method('delete')

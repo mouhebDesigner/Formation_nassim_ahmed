@@ -14,16 +14,16 @@
     </style>
 </head>
 <body>
-
-    <form action="{{ url('users') }}" method="post">
-    @csrf
+    <form action="{{ url('users/'.$user->id) }}" method="post">
+        @csrf
+        @method('put')
         <table>
             <tr>
                 <td>
                     <label for="name">Name</label>
                 </td>
                 <td>
-                    <input type="text" name="nom" id="name" placeholder="Enter your name">
+                    <input type="text" name="nom" value="{{ $user->nom }}" id="name" placeholder="Enter your name">
                 </td>
             </tr>
             <tr>
@@ -31,7 +31,7 @@
                     <label for="email">Email</label>
                 </td>
                 <td>
-                    <input type="text" name="email" id="email" placeholder="Enter your email">
+                    <input type="text" name="email" id="email" value="{{ $user->email }}" placeholder="Enter your email">
                 </td>
             </tr>
             <tr>
@@ -39,7 +39,7 @@
                     <label for="password">Password</label>
                 </td>
                 <td>
-                    <input type="password" name="password" id="password" placeholder="Enter your Password">
+                    <input type="password" name="password" id="password" value="{{ $user->password }}" placeholder="Enter your Password">
                 </td>
             </tr>
             <tr>

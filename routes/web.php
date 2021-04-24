@@ -23,6 +23,7 @@ Route::get('users/create', function(){
     return view('users.create');
 });
 
+
 Route::post('users', function(Request $request){
     // Afficher le donné envoyés par la formulaires
     // return $request->all();
@@ -32,8 +33,6 @@ Route::post('users', function(Request $request){
 
     return redirect('users')->with('update', 'L\'utilisateur a été add avec succés');
     // La deuxième méthode 
-    
-
 });
 Route::get('users', function(){
     // $users = User::all();
@@ -50,7 +49,24 @@ Route::delete('users/{id}', function($id){
     // variable session flash 
     return redirect('users')->with('deleted', 'L\'utilisateur '.$user_name.' a été supprimé avec succés');
 });
-/********************Ahmed  ************/
+// Edit route 
+Route::get('users/{id}/edit', function($id){
+    $user = User::find($id);
+    return view('users.edit', compact('user'));
+});
+// update route 
+Route::put('users/{id}', function(Request $request, $id){
+    $user =  User::find($id);
+
+    $user->nom = $request->nom;
+    $user->email = $request->email;
+    $user->password = $request->password;
+
+    $user->save();
+
+    return redirect('users')->with('updated', 'L\'utilisateur '.$user->nom.' a été modifié avec succés');
+});
+/******************** Ahmed  ************/
 Route::get('userss', function(){
     $users=User::all();
     return view('users.indexx',compact('users'));
