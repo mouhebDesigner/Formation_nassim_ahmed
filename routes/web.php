@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+/****************** Mouheb *************************/ 
 Route::get('/', function () {
     return view('welcome');
 });
@@ -39,10 +40,7 @@ Route::get('users', function(){
     // return view('users.index', compact('users'));
     return view('users.index');
 });
-Route::get('userss', function(){
-    $users=User::all();
-    return view('users.indexx',compact('users'));
-});
+
 
 // route of delete user 
 
@@ -51,6 +49,11 @@ Route::delete('users/{id}', function($id){
     User::find($id)->delete();
     // variable session flash 
     return redirect('users')->with('deleted', 'L\'utilisateur '.$user_name.' a été supprimé avec succés');
+});
+/********************Ahmed  ************/
+Route::get('userss', function(){
+    $users=User::all();
+    return view('users.indexx',compact('users'));
 });
 Route::delete('userss/{id}', function($id){
     User::find($id)->delete();
