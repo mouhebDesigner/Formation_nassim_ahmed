@@ -29,7 +29,7 @@ Route::post('users', function(Request $request){
     // La premièer méthode est 
     User::create($request->all());
 
-    return "user added successfully";
+    return redirect('users')->with('update', 'L\'utilisateur a été add avec succés');
     // La deuxième méthode 
     
 
@@ -47,8 +47,10 @@ Route::get('userss', function(){
 // route of delete user 
 
 Route::delete('users/{id}', function($id){
+    $user_name = User::find($id)->nom;
     User::find($id)->delete();
-    return ('delete succ');
+    // variable session flash 
+    return redirect('users')->with('deleted', 'L\'utilisateur '.$user_name.' a été supprimé avec succés');
 });
 Route::delete('userss/{id}', function($id){
     User::find($id)->delete();

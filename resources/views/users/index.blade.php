@@ -26,6 +26,16 @@
 <body>
     <div class="container mt-5">
         <div class="row">
+            @if(session('deleted'))
+            <div class="col-md-10 offset-md-1 alert alert-success" role="alert">
+                {{ session('deleted') }}
+            </div>          
+            @endif
+            @if(session('update'))
+            <div class="col-md-10 offset-md-1 alert alert-success" role="alert">
+                {{ session('update') }}
+            </div>    
+             @endif
             <div class="col-md-10 offset-md-1">
                 <table class="table table-dark">
                     <thead>

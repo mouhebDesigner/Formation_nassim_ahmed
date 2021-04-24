@@ -14,6 +14,11 @@
     </style>
 </head>
 <body>
+<div class="container mt-5">
+        <div class="row">
+            <div class="col-md-10 offset-md-1 alert alert-success" role="alert">
+                {{ session('update') }}
+            </div> 
     <form action="{{ url('users') }}" method="post">
     @csrf
         <table>
@@ -22,7 +27,7 @@
                     <label for="name">Name</label>
                 </td>
                 <td>
-                    <input type="text" pattern="regex:" name="nom" id="name" placeholder="Enter your name" required>
+                    <input type="text" name="nom" id="name" placeholder="Enter your name">
                 </td>
             </tr>
             <tr>
