@@ -2,7 +2,7 @@
     <head>
     </head>
     <body>
-        <a href="{{ url('users/create') }}" style="
+        <a href="{{ url('users') }}" style="
             width: 100px;
             height: 30px;
             background: #16657f;
@@ -14,7 +14,7 @@
             left: 150px;
             top: 150px;
         ">
-            Add User
+            List of users
         </a>
     </body>
 </html>

@@ -26,6 +26,13 @@
 <body>
     <div class="container mt-5">
         <div class="row">
+            <div class="col-md-10 offset-md-1">
+                <div class="d-flex justify-content-end mb-5">
+                    <a href="{{ url('users/create') }}" class="btn btn-primary">Add User</a>
+                </div>
+            </div>
+        </div>
+        <div class="row">
             @if(session('deleted'))
             <div class="col-md-10 offset-md-1 alert alert-success" role="alert">
                 {{ session('deleted') }}
@@ -40,7 +47,7 @@
             <div class="col-md-10 offset-md-1 alert alert-danger" role="alert">
                 {{ session('update') }}
             </div>    
-             @endif
+            @endif
             <div class="col-md-10 offset-md-1">
                 <table class="table table-dark">
                     <thead>

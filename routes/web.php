@@ -3,6 +3,7 @@
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,54 +19,21 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+// php artisan make:controller UserController --resource
+Route::resource('users', UserController::class);
 
-Route::get('users/create', function(){
-    return view('users.create');
-});
-
-
-Route::post('users', function(Request $request){
-    // Afficher le donné envoyés par la formulaires
-    // return $request->all();
-    // Sauvegarder les donnés
-    // La premièer méthode est 
-    User::create($request->all());
-
-    return redirect('users')->with('update', 'L\'utilisateur a été add avec succés');
-    // La deuxième méthode 
-});
-Route::get('users', function(){
-    // $users = User::all();
-    // return view('users.index', compact('users'));
-    return view('users.index');
-});
-
-
-// route of delete user 
-
-Route::delete('users/{id}', function($id){
-    $user_name = User::find($id)->nom;
-    User::find($id)->delete();
-    // variable session flash 
-    return redirect('users')->with('deleted', 'L\'utilisateur '.$user_name.' a été supprimé avec succés');
-});
-// Edit route 
-Route::get('users/{id}/edit', function($id){
-    $user = User::find($id);
-    return view('users.edit', compact('user'));
-});
-// update route 
-Route::put('users/{id}', function(Request $request, $id){
-    $user =  User::find($id);
-
-    $user->nom = $request->nom;
-    $user->email = $request->email;
-    $user->password = $request->password;
-
-    $user->save();
-
-    return redirect('users')->with('updated', 'L\'utilisateur '.$user->nom.' a été modifié avec succés');
-});
+// // list of user
+// Route::get('users', [UserController::class, 'index']);
+// // add user
+// Route::get('users/create', [UserController::class, 'create']);
+// // save user 
+// Route::post('users', [UserController::class, 'store']);
+// // delete users 
+// Route::delete('users/{id}', [UserController::class, 'destroy']);
+// // Edit route 
+// Route::get('users/{id}/edit', [UserController::class, 'edit']);
+// // update route 
+// Route::put('users/{id}', [UserController::class, 'update']);
 /******************** Ahmed  ************/
 Route::get('userss', function(){
     $users=User::all();
@@ -75,3 +43,7 @@ Route::delete('userss/{id}', function($id){
     User::find($id)->delete();
     return "supp";
 });
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
