@@ -17,10 +17,14 @@ use App\Http\Controllers\UserController;
 */
 /****************** Mouheb *************************/ 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
 // php artisan make:controller UserController --resource
-Route::resource('users', UserController::class);
+
+
+Route::middleware(['auth'])->group(function () {
+    Route::resource('users', UserController::class);
+});
 
 // // list of user
 // Route::get('users', [UserController::class, 'index']);
