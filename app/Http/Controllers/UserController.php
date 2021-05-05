@@ -22,7 +22,15 @@ class UserController extends Controller
         // return $request->all();
         // Sauvegarder les donnés
         // La premièer méthode est 
-        User::create($request->all());
+        // User::create($request->all());
+        $user =  new User;
+
+        $user->nom = $request->nom;
+        $user->email = $request->email;
+        $user->password = $request->password;
+        $user->phone_number = $request->phone_number;
+    
+        $user->save();
 
         return redirect('users')->with('update', 'L\'utilisateur a été add avec succés');
         // La deuxième méthode 

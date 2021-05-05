@@ -28,6 +28,14 @@
             </tr>
             <tr>
                 <td>
+                    <label for="name">Phone</label>
+                </td>
+                <td>
+                    <input type="number" name="phone_number" id="name" placeholder="Enter your phone">
+                </td>
+            </tr>
+            <tr>
+                <td>
                     <label for="email">Email</label>
                 </td>
                 <td>
