@@ -19,12 +19,17 @@ use App\Http\Controllers\UserController;
 Route::get('/', function () {
     return view('auth.login');
 });
+
+Route::get('connecter', function(){
+    return view('login');
+});
 // php artisan make:controller UserController --resource
 
 
 Route::middleware(['auth'])->group(function () {
     Route::resource('users', UserController::class);
 });
+// Route::resource('users', UserController::class)->middleware('auth');
 
 // // list of user
 // Route::get('users', [UserController::class, 'index']);
